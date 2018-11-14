@@ -1,0 +1,27 @@
+{
+  "name": "rollup-plugin-banner",
+  "version": "0.1.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "mocha test/index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yingye/rollup-plugin-banner.git"
+  },
+  "author": "yingye",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yingye/rollup-plugin-banner/issues"
+  },
+  "homepage": "https://github.com/yingye/rollup-plugin-banner#readme",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0",
+    "rollup": "^0.67.1"
+  },
+  "dependencies": {
+    "lodash.template": "^4.4.0"
+  }
+}
