@@ -1,7 +1,7 @@
 # rollup-plugin-banner
 
-<!-- [![Build Status](https://travis-ci.org/yingye/postcss-px2units.svg?branch=master)](https://travis-ci.org/yingye/postcss-px2units)
-[![npm version](https://badge.fury.io/js/postcss-px2units.svg)](https://badge.fury.io/js/postcss-px2units) -->
+[![Build Status](https://travis-ci.org/yingye/rollup-plugin-banner.svg?branch=master)](https://travis-ci.org/yingye/rollup-plugin-banner)
+[![npm version](https://badge.fury.io/js/rollup-plugin-banner.svg)](https://badge.fury.io/js/rollup-plugin-banner)
 [![change-log](https://img.shields.io/badge/changelog-md-blue.svg)](https://github.com/yingye/rollup-plugin-banner/blob/master/CHANGELOG.md)
 
 ## Introduction
