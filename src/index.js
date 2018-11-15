@@ -1,6 +1,7 @@
-const BannerPlugin = require('./banner')
+// const BannerPlugin = require('./banner')
+import BannerPlugin from './banner'
 
-module.exports = function banner (options = {}) {
+export default function banner (options = {}) {
   const plugin = new BannerPlugin(options)
   return {
     name: 'banner',

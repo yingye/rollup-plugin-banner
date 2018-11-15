@@ -2,7 +2,7 @@ const template = require('lodash.template')
 const fs = require('fs')
 const path = require('path')
 
-class BannerPlugin {
+export default class BannerPlugin {
   constructor (options = {}) {
     this._options = options
     this._cwd = options.cwd || process.cwd()
@@ -50,5 +50,3 @@ class BannerPlugin {
     return res
   }
 }
-
-module.exports = BannerPlugin

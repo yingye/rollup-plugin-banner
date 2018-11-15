@@ -1,7 +1,7 @@
 const expect = require('chai').expect
 const { rollup } = require('rollup')
 const { readFileSync: readFile } = require('fs')
-const banner = require('../src')
+const banner = require('../dist').default
 const path = require('path')
 
 describe('rollup-plugin-banner', () => {
