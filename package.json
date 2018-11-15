@@ -19,6 +19,7 @@
   "homepage": "https://github.com/yingye/rollup-plugin-banner#readme",
   "devDependencies": {
     "@babel/core": "^7.1.6",
+    "@babel/preset-env": "^7.1.6",
     "babel-eslint": "^10.0.1",
     "chai": "^4.2.0",
     "del": "^3.0.0",
