@@ -16,6 +16,17 @@ describe('rollup-plugin-banner', () => {
       "// index.js by yingye\n\'use strict\';\n\nwindow.test = true;\nconsole.log(\'hello rollup-plugin-banner\');\n"
     )
   })
+  it('[input] string with line break', async () => {
+    let text = 'index.js by <%= pkg.author %>\n\ntest line'
+    const bundle = await rollup({
+      input: 'test/fixtures/index.js',
+      plugins: [ banner(text) ]
+    })
+    const result = await bundle.generate({ format: 'cjs' })
+    expect(result.code).to.eql(
+      "/** \n * index.js by yingye\n * \n * test line\n */\n\'use strict\';\n\nwindow.test = true;\nconsole.log(\'hello rollup-plugin-banner\');\n"
+    )
+  })
   it('[input] obj', async () => {
     let obj = {
       file: path.resolve(__dirname, './fixtures/banner.txt')
@@ -26,7 +37,7 @@ describe('rollup-plugin-banner', () => {
     })
     const result = await bundle.generate({ format: 'cjs' })
     expect(result.code).to.eql(
-      "// index.js by yingye\n\'use strict\';\n\nwindow.test = true;\nconsole.log(\'hello rollup-plugin-banner\');\n"
+      "/** \n * index.js by yingye\n * \n * second line\n * third line\n * \n */\n\'use strict\';\n\nwindow.test = true;\nconsole.log(\'hello rollup-plugin-banner\');\n"
     )
   })
   it('[input] null', async () => {

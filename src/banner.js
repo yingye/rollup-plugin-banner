@@ -25,6 +25,8 @@ class BannerPlugin {
         content = fs.readFileSync(filePath, encoding || 'utf-8')
       }
     }
+
+    // fix content
     if (content) {
       const tmpl = template(content)
       let text = ''
@@ -33,8 +35,9 @@ class BannerPlugin {
         text = '// ' + arr[0] + '\n'
       } else {
         for (let i = 0; i < arr.length; i++) {
+          let item = arr[i]
           if (i === 0) {
-            text += '/** ' + item + '\n'
+            text += '/** \n * ' + item + '\n'
           } else if (i === arr.length - 1) {
             text += ' * ' + item + '\n */\n'
           } else {

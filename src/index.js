@@ -6,6 +6,6 @@ module.exports = function banner (options = {}) {
     name: 'banner',
     renderChunk (code) {
       return plugin.prependBanner(code)
-    },
+    }
   }
 }
