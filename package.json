@@ -1,12 +1,18 @@
 {
   "name": "rollup-plugin-banner",
   "version": "0.1.0",
-  "description": "",
+  "description": "Rollup plugin to append content before js bundle",
   "main": "dist/index.js",
   "scripts": {
     "build": "gulp",
     "test": "mocha test/index"
   },
+  "keywords": [
+    "rollup",
+    "rollup-plugin",
+    "banner",
+    "license"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/yingye/rollup-plugin-banner.git"

@@ -6,7 +6,7 @@
 
 ## Introduction
 
-Append content before js bundle
+Rollup plugin to append content before js bundle
 
 ## Usage
 
