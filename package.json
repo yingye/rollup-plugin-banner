@@ -1,6 +1,6 @@
 {
   "name": "rollup-plugin-banner",
-  "version": "0.1.0-rc",
+  "version": "0.1.0",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
