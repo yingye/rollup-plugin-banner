@@ -6,7 +6,9 @@
 
 ## Introduction
 
-Rollup plugin to append content before js bundle
+Rollup plugin to append content before js bundle.
+
+The difference between this plugin and the output.banner parameter provided by the rollup is that the banner will not be cleaned up. For example, your project uses the rollup-plugin-uglify plugin, the output file will not contain the output.banner parameter you set. So you need rollup-plugin-banner to solve this problem.
 
 ## Usage
 
