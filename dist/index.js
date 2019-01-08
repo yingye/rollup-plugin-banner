@@ -14,7 +14,7 @@ function banner() {
   var plugin = new _banner.default(options);
   return {
     name: 'banner',
-    transformBundle: function transformBundle(code) {
+    renderChunk: function renderChunk(code) {
       return plugin.prependBanner(code);
     }
   };
