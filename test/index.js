@@ -11,8 +11,8 @@ describe('rollup-plugin-banner', () => {
       input: 'test/fixtures/index.js',
       plugins: [ banner(text) ]
     })
-    const result = await bundle.generate({ format: 'cjs' })
-    expect(result.code).to.eql(
+    const { output } = await bundle.generate({ format: 'cjs' })
+    expect(output[0].code).to.eql(
       "// index.js by yingye\n\'use strict\';\n\nwindow.test = true;\nconsole.log(\'hello rollup-plugin-banner\');\n"
     )
   })
@@ -22,8 +22,8 @@ describe('rollup-plugin-banner', () => {
       input: 'test/fixtures/index.js',
       plugins: [ banner(text) ]
     })
-    const result = await bundle.generate({ format: 'cjs' })
-    expect(result.code).to.eql(
+    const { output } = await bundle.generate({ format: 'cjs' })
+    expect(output[0].code).to.eql(
       "/** \n * index.js by yingye\n * \n * test line\n */\n\'use strict\';\n\nwindow.test = true;\nconsole.log(\'hello rollup-plugin-banner\');\n"
     )
   })
@@ -35,8 +35,8 @@ describe('rollup-plugin-banner', () => {
       input: 'test/fixtures/index.js',
       plugins: [ banner(obj) ]
     })
-    const result = await bundle.generate({ format: 'cjs' })
-    expect(result.code).to.eql(
+    const { output } = await bundle.generate({ format: 'cjs' })
+    expect(output[0].code).to.eql(
       "/** \n * index.js by yingye\n * \n * second line\n * third line\n * \n */\n\'use strict\';\n\nwindow.test = true;\nconsole.log(\'hello rollup-plugin-banner\');\n"
     )
   })
@@ -45,8 +45,8 @@ describe('rollup-plugin-banner', () => {
       input: 'test/fixtures/index.js',
       plugins: [ banner() ]
     })
-    const result = await bundle.generate({ format: 'cjs' })
-    expect(result.code).to.eql(
+    const { output } = await bundle.generate({ format: 'cjs' })
+    expect(output[0].code).to.eql(
       "\'use strict\';\n\nwindow.test = true;\nconsole.log(\'hello rollup-plugin-banner\');\n"
     )
   })
