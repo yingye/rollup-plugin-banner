@@ -24,7 +24,7 @@ describe('rollup-plugin-banner', () => {
     })
     const { output } = await bundle.generate({ format: 'cjs' })
     expect(output[0].code).to.eql(
-      "/** \n * index.js by yingye\n * \n * test line\n */\n\'use strict\';\n\nwindow.test = true;\nconsole.log(\'hello rollup-plugin-banner\');\n"
+      "/**\n * index.js by yingye\n * \n * test line\n */\n\n'use strict';\n\nwindow.test = true;\nconsole.log('hello rollup-plugin-banner');\n"
     )
   })
   it('[input] obj', async () => {
@@ -37,7 +37,7 @@ describe('rollup-plugin-banner', () => {
     })
     const { output } = await bundle.generate({ format: 'cjs' })
     expect(output[0].code).to.eql(
-      "/** \n * index.js by yingye\n * \n * second line\n * third line\n * \n */\n\'use strict\';\n\nwindow.test = true;\nconsole.log(\'hello rollup-plugin-banner\');\n"
+      "/**\n * index.js by yingye\n * \n * second line\n * third line\n * \n */\n\n\'use strict\';\n\nwindow.test = true;\nconsole.log(\'hello rollup-plugin-banner\');\n"
     )
   })
   it('[input] null', async () => {
