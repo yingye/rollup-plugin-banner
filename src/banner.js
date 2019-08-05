@@ -37,9 +37,9 @@ export default class BannerPlugin {
         for (let i = 0; i < arr.length; i++) {
           let item = arr[i]
           if (i === 0) {
-            text += '/** \n * ' + item + '\n'
+            text += '/**\n * ' + item + '\n'
           } else if (i === arr.length - 1) {
-            text += ' * ' + item + '\n */\n'
+            text += ' * ' + item + '\n */\n\n'
           } else {
             text += ' * ' + item + '\n'
           }
