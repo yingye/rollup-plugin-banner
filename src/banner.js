@@ -37,7 +37,7 @@ export default class BannerPlugin {
     const setContent = {
       string: () => this.setStringContent(),
       object: () => this.setObjectContent(),
-      array: () => this.setArrayContent(),
+      array: () => this.setArrayContent()
     }
 
     const isArray = Array.isArray(this._options)
