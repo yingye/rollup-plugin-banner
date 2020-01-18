@@ -14,7 +14,7 @@ gulp.task('lint', () => {
   return gulp.src(srcFiles)
     .pipe(eslint())
     .pipe(eslint.format())
-    .pipe(eslint.failAfterError())
+  // .pipe(eslint.failAfterError())
 })
 
 gulp.task('build', ['clean', 'lint'], () => {
