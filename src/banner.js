@@ -38,10 +38,8 @@ export default class BannerPlugin {
       string: () => this.setStringContent(),
       object: () => this.setObjectContent(),
       array: () => this.setArrayContent(),
-      default: () => this.setStringContent()
     }
 
-    // this._options = [" a \n a \n a", "//"];
     const isArray = Array.isArray(this._options)
     const paramType = isArray ? 'array' : typeof this._options
     content = setContent[paramType]()
