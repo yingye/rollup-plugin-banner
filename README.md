@@ -37,19 +37,20 @@ banner(options)
 
 ### options
 
-Type: String / Object
+Type: String / Object / Array
 
 #### String
+For default javascript comments
 
 Input:
 
-```
+```javascript
 banner('rollup-plugin-banner v<%= pkg.version %> by <%= pkg.author %>')
 ```
 
 Output:
 
-```
+```javascript
 // rollup-plugin-banner v0.1.0 by yingye
 ```
 
@@ -57,13 +58,13 @@ The pkg is the content of the project package.json.
 
 If your text is multi-line, you can use '\n'.
 
-```
+```javascript
 banner('rollup-plugin-banner\nv<%= pkg.version %>\nby <%= pkg.author %>')
 ```
 
 output:
 
-```
+```javascript
 /**
 * rollup-plugin-banner
 * v0.1.0
@@ -72,10 +73,26 @@ output:
 ```
 
 #### Object
+For files
 
-```
+```javascript
 banner({
   file: path.join(__dirname, 'banner.txt')，
   encoding: 'utf-8' // default is utf-8
 })
+```
+
+### Array
+For custom comment symbol
+
+Input: 
+```javascript
+banner('My script\nVersion <%= pkg.version %>', '#')
+```
+
+Output:
+
+```javascript
+# My script
+# Version 1.0
 ```

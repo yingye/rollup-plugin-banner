@@ -13,7 +13,7 @@ describe('rollup-plugin-banner', () => {
     })
     const { output } = await bundle.generate({ format: 'cjs' })
     expect(output[0].code).to.eql(
-      "// index.js by yingye\n\'use strict\';\n\nwindow.test = true;\nconsole.log(\'hello rollup-plugin-banner\');\n"
+      "// index.js by yingye\n'use strict';\n\nwindow.test = true;\nconsole.log('hello rollup-plugin-banner');\n"
     )
   })
   it('[input] string with line break', async () => {
@@ -24,7 +24,16 @@ describe('rollup-plugin-banner', () => {
     })
     const { output } = await bundle.generate({ format: 'cjs' })
     expect(output[0].code).to.eql(
-      "/**\n * index.js by yingye\n * \n * test line\n */\n\n'use strict';\n\nwindow.test = true;\nconsole.log('hello rollup-plugin-banner');\n"
+      "/**\n" + 
+      " * index.js by yingye \n" + 
+      " *  \n" + 
+      " * test line \n" + 
+      " */\n" + 
+      "\n" + 
+      "'use strict';\n" + 
+      "\n" + 
+      "window.test = true;\n" + 
+      "console.log('hello rollup-plugin-banner');\n"
     )
   })
   it('[input] obj', async () => {
@@ -37,17 +46,49 @@ describe('rollup-plugin-banner', () => {
     })
     const { output } = await bundle.generate({ format: 'cjs' })
     expect(output[0].code).to.eql(
-      "/**\n * index.js by yingye\n * \n * second line\n * third line\n * \n */\n\n\'use strict\';\n\nwindow.test = true;\nconsole.log(\'hello rollup-plugin-banner\');\n"
+      "/**\n" + 
+      " * index.js by yingye \n" + 
+      " *  \n" + 
+      " * second line \n" + 
+      " * third line \n" + 
+      " *  \n" + 
+      " */\n" + 
+      "\n" + 
+      "'use strict';\n" + 
+      "\n" + 
+      "window.test = true;\n" + 
+      "console.log('hello rollup-plugin-banner');\n" 
     )
   })
   it('[input] null', async () => {
     const bundle = await rollup({
       input: 'test/fixtures/index.js',
-      plugins: [ banner() ]
+      plugins: [banner()]
     })
     const { output } = await bundle.generate({ format: 'cjs' })
     expect(output[0].code).to.eql(
-      "\'use strict\';\n\nwindow.test = true;\nconsole.log(\'hello rollup-plugin-banner\');\n"
+      "'use strict';\n" + 
+      "\n" + 
+      "window.test = true;\n" + 
+      "console.log('hello rollup-plugin-banner');\n" 
+    )
+  })
+  it('[input] array', async () => {
+    let array = ['index.js by <%= pkg.author %>\n\ntest line', '//']
+    const bundle = await rollup({
+      input: 'test/fixtures/index.js',
+      plugins: [banner(array)]
+    })
+    const { output } = await bundle.generate({ format: 'cjs' })
+    expect(output[0].code).to.eql(
+      "// index.js by yingye \n" + 
+      "//  \n" + 
+      "// test line \n" + 
+      "\n" + 
+      "'use strict';\n" + 
+      "\n" + 
+      "window.test = true;\n" + 
+      "console.log('hello rollup-plugin-banner');\n" 
     )
   })
 })
