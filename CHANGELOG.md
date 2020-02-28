@@ -2,6 +2,10 @@
 
 Change log for rollup-plugin-banner. [Details at Github](https://github.com/yingye/rollup-plugin-banner)
 
+## [Unreleased]
+
+- support generating sourcemaps
+
 ## [0.2.0] - 2019-1-7
 
 - Update rollup hook.
