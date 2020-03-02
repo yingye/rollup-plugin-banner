@@ -50,4 +50,29 @@ describe('rollup-plugin-banner', () => {
       "\'use strict\';\n\nwindow.test = true;\nconsole.log(\'hello rollup-plugin-banner\');\n"
     )
   })
+  it('does not have a sourcemap warning', async () => {
+    let anyWarning = false
+    const text = 'some banner'
+    const bundle = await rollup({
+      input: 'test/fixtures/index.js',
+      plugins: [ banner(text) ],
+      onwarn: () => { anyWarning = true }
+    })
+    await bundle.generate({ format: 'cjs', sourcemap: true })
+
+    expect(anyWarning).to.eql(false)
+  })
+  it('does not create a sourcemap option is turned off', async () => {
+    let anyWarning = false
+    const text = 'some banner'
+    const bundle = await rollup({
+      input: 'test/fixtures/index.js',
+      plugins: [ banner(text) ],
+      onwarn: () => { anyWarning = true }
+    })
+    const { output } = await bundle.generate({ format: 'cjs', sourcemap: false })
+
+    expect(anyWarning).to.eql(false)
+    expect(output[0].map).to.eql(null)
+  })
 })

@@ -1,6 +1,7 @@
 const template = require('lodash.template')
 const fs = require('fs')
 const path = require('path')
+const MagicString = require('magic-string')
 
 export default class BannerPlugin {
   constructor (options = {}) {
@@ -45,8 +46,19 @@ export default class BannerPlugin {
           }
         }
       }
-      res = text + code
+      res = this.createResultWithSourcemap(code, text)
     }
     return res
+  }
+
+  createResultWithSourcemap (code, banner) {
+    const magicString = new MagicString(code)
+    magicString.prepend(banner)
+
+    // sourcemap generation inspired in https://github.com/jacksonrayhamilton/rollup-plugin-shift-header
+    return {
+      code: magicString.toString(),
+      map: magicString.generateMap({ hires: true })
+    }
   }
 }

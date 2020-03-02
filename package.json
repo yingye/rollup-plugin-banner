@@ -41,6 +41,7 @@
     "rollup": "^1.1.0"
   },
   "dependencies": {
-    "lodash.template": "^4.4.0"
+    "lodash.template": "^4.4.0",
+    "magic-string": "^0.25.6"
   }
 }

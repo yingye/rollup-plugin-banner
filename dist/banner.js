@@ -17,6 +17,8 @@ var fs = require('fs');
 
 var path = require('path');
 
+var MagicString = require('magic-string');
+
 var BannerPlugin =
 /*#__PURE__*/
 function () {
@@ -75,10 +77,23 @@ function () {
           }
         }
 
-        res = text + code;
+        res = this.createResultWithSourcemap(code, text);
       }
 
       return res;
+    }
+  }, {
+    key: "createResultWithSourcemap",
+    value: function createResultWithSourcemap(code, banner) {
+      var magicString = new MagicString(code);
+      magicString.prepend(banner); // sourcemap generation inspired in https://github.com/jacksonrayhamilton/rollup-plugin-shift-header
+
+      return {
+        code: magicString.toString(),
+        map: magicString.generateMap({
+          hires: true
+        })
+      };
     }
   }]);
 
