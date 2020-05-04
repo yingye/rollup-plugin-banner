@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -17,9 +17,7 @@ var fs = require('fs');
 
 var path = require('path');
 
-var BannerPlugin =
-/*#__PURE__*/
-function () {
+var BannerPlugin = /*#__PURE__*/function () {
   function BannerPlugin() {
     var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
@@ -35,47 +33,63 @@ function () {
     value: function prependBanner(code) {
       var content = '';
       var res = code;
+      var raw = false;
 
       if (typeof this._options === 'string') {
         content = this._options;
       } else {
         var _this$_options = this._options,
+            _this$_options$text = _this$_options.text,
+            text = _this$_options$text === void 0 ? null : _this$_options$text,
             file = _this$_options.file,
             encoding = _this$_options.encoding;
-        if (!file) return code;
-        var filePath = path.resolve(file);
-        var exits = fs.existsSync(filePath);
+        raw = this._options.raw || raw;
+        if (!file && !text) return code;
 
-        if (exits) {
-          content = fs.readFileSync(filePath, encoding || 'utf-8');
+        if (file) {
+          var filePath = path.resolve(file);
+          var exits = fs.existsSync(filePath);
+
+          if (exits) {
+            content = fs.readFileSync(filePath, encoding || 'utf-8');
+          }
+        } else {
+          content = text;
         }
       } // fix content
 
 
       if (content) {
         var tmpl = template(content);
-        var text = '';
-        var arr = tmpl({
-          pkg: this._pkg
-        }).split('\n');
+        var _text = '';
 
-        if (arr.length === 1) {
-          text = '// ' + arr[0] + '\n';
+        if (raw) {
+          _text = tmpl({
+            pkg: this._pkg
+          }) + '\n';
         } else {
-          for (var i = 0; i < arr.length; i++) {
-            var item = arr[i];
+          var arr = tmpl({
+            pkg: this._pkg
+          }).split('\n');
 
-            if (i === 0) {
-              text += '/**\n * ' + item + '\n';
-            } else if (i === arr.length - 1) {
-              text += ' * ' + item + '\n */\n\n';
-            } else {
-              text += ' * ' + item + '\n';
+          if (arr.length === 1) {
+            _text = '// ' + arr[0] + '\n';
+          } else {
+            for (var i = 0; i < arr.length; i++) {
+              var item = arr[i];
+
+              if (i === 0) {
+                _text += '/**\n * ' + item + '\n';
+              } else if (i === arr.length - 1) {
+                _text += ' * ' + item + '\n */\n\n';
+              } else {
+                _text += ' * ' + item + '\n';
+              }
             }
           }
         }
 
-        res = text + code;
+        res = _text + code;
       }
 
       return res;
@@ -85,4 +99,4 @@ function () {
   return BannerPlugin;
 }();
 
-exports.default = BannerPlugin;
+exports["default"] = BannerPlugin;

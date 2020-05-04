@@ -31,15 +31,11 @@ export default {
 
 ```
 
-## API
-
-banner(options)
-
-### options
+## Options
 
 Type: String / Object
 
-#### String
+### String
 
 Input:
 
@@ -71,11 +67,21 @@ output:
 */
 ```
 
-#### Object
+### Object
 
 ```
 banner({
-  file: path.join(__dirname, 'banner.txt')，
+  // Choose one of the following two options
+
+  // Options 1: string
+  text: 'rollup-plugin-banner\nv<%= pkg.version %>\nby <%= pkg.author %>',
+
+  // Options 2: file
+  file: path.join(__dirname, 'banner.txt'),
   encoding: 'utf-8' // default is utf-8
+
+  // if true, banner will not be wrapped in a comment
+  //          a `\n` will be appended to the end of banner
+  raw: false,
 })
 ```

@@ -50,4 +50,20 @@ describe('rollup-plugin-banner', () => {
       "\'use strict\';\n\nwindow.test = true;\nconsole.log(\'hello rollup-plugin-banner\');\n"
     )
   })
+  it('[input] string with raw', async () => {
+    let text = '// index.js by <%= pkg.author %>'
+    const bundle = await rollup({
+      input: 'test/fixtures/index.js',
+      plugins: [
+        banner({
+          text,
+          raw: true
+        })
+      ]
+    })
+    const { output } = await bundle.generate({ format: 'cjs' })
+    expect(output[0].code).to.eql(
+      "// index.js by yingye\n\'use strict\';\n\nwindow.test = true;\nconsole.log(\'hello rollup-plugin-banner\');\n"
+    )
+  })
 })
